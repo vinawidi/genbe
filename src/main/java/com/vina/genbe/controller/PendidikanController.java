@@ -27,7 +27,7 @@ import com.vina.genbe.service.ServiceImpl;
 public class PendidikanController {
 	private final PendidikanRepository pendidikanRepository;
 	private final PersonRepository personRepository;
-	
+
 	@Autowired
 	private PersonService pendService = new ServiceImpl();
 
@@ -43,10 +43,9 @@ public class PendidikanController {
 		statusMessageDto.setMessage("data berhasil diinput");
 		return statusMessageDto;
 	}
-	
+
 	@PostMapping
-	public StatusMessageDto insert(@RequestBody List<PendidikanDto> dto, @RequestParam Integer id ) {
-//		StatusMessageDto statusMessageDto = new StatusMessageDto();
+	public StatusMessageDto insert(@RequestBody List<PendidikanDto> dto, @RequestParam Integer id) {
 		try {
 			pendService.insertPendidikan(dto, id);
 			return dataBenar();
@@ -54,14 +53,14 @@ public class PendidikanController {
 			return dataSalah();
 		}
 	}
-	
+
 	private StatusMessageDto dataBenar() {
 		StatusMessageDto statusMessageDto = new StatusMessageDto();
 		statusMessageDto.setStatus("true");
 		statusMessageDto.setMessage("data berhasil masuk");
 		return statusMessageDto;
 	}
-	
+
 	private StatusMessageDto dataSalah() {
 		StatusMessageDto statusMessageDto = new StatusMessageDto();
 		statusMessageDto.setStatus("false");
@@ -69,29 +68,11 @@ public class PendidikanController {
 		return statusMessageDto;
 	}
 
-//	private PendidikanEntity convertToEntity(PendidikanDto dto, Integer idPer) {
-//		PendidikanEntity pendidikanEntity = new PendidikanEntity();
-//		pendidikanEntity.setIdPend(dto.getIdPendidikan());
-//
-////		if (personRepository.findById(dto.getIdPerso()).isPresent()) {
-////			PersonEntity personEntity = personRepository.findById(dto.getIdPerso()).get();
-////			pendidikanEntity.setPersonEntity(personEntity);
-////
-//			pendidikanEntity.setJenjangPendidikan(dto.getJenjang());
-//			pendidikanEntity.setInstitusiPendidikan(dto.getInstitusi());
-//			pendidikanEntity.setThnMasuk(dto.getTahunMasuk());
-//			pendidikanEntity.setThnLulus(dto.getTahunLulus());
-//
-//		}
-//		return pendidikanEntity;
-//	}
-
 	private PendidikanDto convertToDto(PendidikanEntity pendidikanEntity) {
 		PendidikanDto pendidikanDto = new PendidikanDto();
 		pendidikanDto.setIdPendidikan(pendidikanEntity.getIdPend());
 		pendidikanDto.setJenjang(pendidikanEntity.getJenjangPendidikan());
 		pendidikanDto.setInstitusi(pendidikanEntity.getInstitusiPendidikan());
-//		pendidikanDto.setIdPerso(pendidikanEntity.getPersonEntity().getId());
 		pendidikanDto.setTahunMasuk(pendidikanEntity.getThnMasuk());
 		pendidikanDto.setTahunLulus(pendidikanEntity.getThnLulus());
 		return pendidikanDto;

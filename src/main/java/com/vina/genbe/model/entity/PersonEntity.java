@@ -2,7 +2,6 @@ package com.vina.genbe.model.entity;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "t_person")
 
@@ -11,16 +10,16 @@ public class PersonEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_person", length = 25)
 	private Integer id;
-	
+
 	@Column(name = "nik", length = 16, nullable = false, unique = true)
 	private String nik;
-	
+
 	@Column(name = "nama", length = 50)
 	private String nama;
-	
+
 	@Column(name = "alamat", length = 255)
 	private String alamat;
-	
+
 	@OneToOne(mappedBy = "personEntity")
 	private BiodataEntity biodataEntity;
 
@@ -31,7 +30,6 @@ public class PersonEntity {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getNik() {
 		return nik;
@@ -64,11 +62,5 @@ public class PersonEntity {
 	public void setBiodataEntity(BiodataEntity biodataEntity) {
 		this.biodataEntity = biodataEntity;
 	}
-	
-
-	
-	
-	
-	
 
 }

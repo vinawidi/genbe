@@ -2,7 +2,6 @@ package com.vina.genbe.model.entity;
 
 import java.sql.Date;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -13,16 +12,16 @@ public class BiodataEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_bio")
 	private Integer idBio;
-	
+
 	@Column(name = "no_hp", length = 16)
 	private String noHp;
-	
+
 	@Column(name = "tanggal_lahir", nullable = false)
 	private Date tanggalLahir;
-	
+
 	@Column(name = "tempat_lahir", length = 50)
 	private String tempatLahir;
-	
+
 	@OneToOne
 	@JoinColumn(name = "idperson")
 	private PersonEntity personEntity;
@@ -66,13 +65,5 @@ public class BiodataEntity {
 	public void setPersonEntity(PersonEntity personEntity) {
 		this.personEntity = personEntity;
 	}
-
-	
-
-	
-	
-	
-	
-	
 
 }

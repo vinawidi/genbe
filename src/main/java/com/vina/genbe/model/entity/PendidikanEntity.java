@@ -3,27 +3,27 @@ package com.vina.genbe.model.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "t_pendidikan")
+@Table(name = "t_pendidikan")
 
 public class PendidikanEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idpendidikan")
 	private Integer idPend;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idperson", nullable = false)
 	private PersonEntity personEntity;
-	
+
 	@Column(name = "jenjang", length = 10, nullable = false)
 	private String jenjangPendidikan;
-	
+
 	@Column(name = "institusi", length = 50, nullable = false)
 	private String institusiPendidikan;
-	
+
 	@Column(name = "tahunmasuk", length = 10, nullable = false)
 	private String thnMasuk;
-	
+
 	@Column(name = "tahunLulus", length = 10, nullable = false)
 	private String thnLulus;
 
@@ -74,11 +74,5 @@ public class PendidikanEntity {
 	public void setThnLulus(String thnLulus) {
 		this.thnLulus = thnLulus;
 	}
-
-
-	
-	
-	
-	
 
 }
