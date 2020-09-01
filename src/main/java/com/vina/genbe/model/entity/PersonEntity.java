@@ -8,11 +8,11 @@ import javax.persistence.*;
 
 public class PersonEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_person", length = 25)
 	private Integer id;
 	
-	@Column(name = "nik", length = 16, nullable = false)
+	@Column(name = "nik", length = 16, nullable = false, unique = true)
 	private String nik;
 	
 	@Column(name = "nama", length = 50)
@@ -20,6 +20,9 @@ public class PersonEntity {
 	
 	@Column(name = "alamat", length = 255)
 	private String alamat;
+	
+	@OneToOne(mappedBy = "personEntity")
+	private BiodataEntity biodataEntity;
 
 	public Integer getId() {
 		return id;
@@ -53,6 +56,15 @@ public class PersonEntity {
 	public void setAlamat(String alamat) {
 		this.alamat = alamat;
 	}
+
+	public BiodataEntity getBiodataEntity() {
+		return biodataEntity;
+	}
+
+	public void setBiodataEntity(BiodataEntity biodataEntity) {
+		this.biodataEntity = biodataEntity;
+	}
+	
 
 	
 	

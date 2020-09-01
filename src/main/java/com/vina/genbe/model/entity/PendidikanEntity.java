@@ -12,19 +12,19 @@ public class PendidikanEntity {
 	private Integer idPend;
 	
 	@ManyToOne
-	@JoinColumn(name = "idperson")
+	@JoinColumn(name = "idperson", nullable = false)
 	private PersonEntity personEntity;
 	
-	@Column(name = "jenjang", length = 10)
+	@Column(name = "jenjang", length = 10, nullable = false)
 	private String jenjangPendidikan;
 	
-	@Column(name = "institusi", length = 50)
+	@Column(name = "institusi", length = 50, nullable = false)
 	private String institusiPendidikan;
 	
-	@Column(name = "tahunmasuk", length = 10)
+	@Column(name = "tahunmasuk", length = 10, nullable = false)
 	private String thnMasuk;
 	
-	@Column(name = "tahunLulus", length = 10)
+	@Column(name = "tahunLulus", length = 10, nullable = false)
 	private String thnLulus;
 
 	public Integer getIdPend() {

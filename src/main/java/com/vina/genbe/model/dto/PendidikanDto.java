@@ -6,7 +6,7 @@ public class PendidikanDto {
 	private String institusi;
 	private String tahunMasuk;
 	private String tahunLulus;
-	private Integer idPerso;
+//	private Integer idPerso;
 	
 	
 	public Integer getIdPendidikan() {
@@ -39,12 +39,12 @@ public class PendidikanDto {
 	public void setTahunLulus(String tahunLulus) {
 		this.tahunLulus = tahunLulus;
 	}
-	public Integer getIdPerso() {
-		return idPerso;
-	}
-	public void setIdPerso(Integer idPerso) {
-		this.idPerso = idPerso;
-	}
+//	public Integer getIdPerso() {
+//		return idPerso;
+//	}
+//	public void setIdPerso(Integer idPerso) {
+//		this.idPerso = idPerso;
+//	}
 	
 	
 

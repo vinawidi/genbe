@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.vina.genbe.model.dto.PendidikanDto;
+import com.vina.genbe.model.dto.PersonBiodataDto;
 import com.vina.genbe.model.dto.StatusMessageDto;
 
 import com.vina.genbe.model.entity.PendidikanEntity;
@@ -35,29 +37,54 @@ public class PendidikanController {
 		this.personRepository = personRepository;
 	}
 
-	private StatusMessageDto status(boolean b, String string) {
+	private StatusMessageDto status() {
 		StatusMessageDto statusMessageDto = new StatusMessageDto();
 		statusMessageDto.setStatus("true");
 		statusMessageDto.setMessage("data berhasil diinput");
 		return statusMessageDto;
 	}
-
-	private PendidikanEntity convertToEntity(PendidikanDto dto, Integer idPer) {
-		PendidikanEntity pendidikanEntity = new PendidikanEntity();
-		pendidikanEntity.setIdPend(dto.getIdPendidikan());
-
-		if (personRepository.findById(dto.getIdPerso()).isPresent()) {
-			PersonEntity personEntity = personRepository.findById(dto.getIdPerso()).get();
-			pendidikanEntity.setPersonEntity(personEntity);
-
-			pendidikanEntity.setJenjangPendidikan(dto.getJenjang());
-			pendidikanEntity.setInstitusiPendidikan(dto.getInstitusi());
-			pendidikanEntity.setThnMasuk(dto.getTahunMasuk());
-			pendidikanEntity.setThnLulus(dto.getTahunLulus());
-
+	
+	@PostMapping
+	public StatusMessageDto insert(@RequestBody List<PendidikanDto> dto, @RequestParam Integer id ) {
+//		StatusMessageDto statusMessageDto = new StatusMessageDto();
+		try {
+			pendService.insertPendidikan(dto, id);
+			return dataBenar();
+		} catch (Exception e) {
+			return dataSalah();
 		}
-		return pendidikanEntity;
 	}
+	
+	private StatusMessageDto dataBenar() {
+		StatusMessageDto statusMessageDto = new StatusMessageDto();
+		statusMessageDto.setStatus("true");
+		statusMessageDto.setMessage("data berhasil masuk");
+		return statusMessageDto;
+	}
+	
+	private StatusMessageDto dataSalah() {
+		StatusMessageDto statusMessageDto = new StatusMessageDto();
+		statusMessageDto.setStatus("false");
+		statusMessageDto.setMessage("data gagal masuk");
+		return statusMessageDto;
+	}
+
+//	private PendidikanEntity convertToEntity(PendidikanDto dto, Integer idPer) {
+//		PendidikanEntity pendidikanEntity = new PendidikanEntity();
+//		pendidikanEntity.setIdPend(dto.getIdPendidikan());
+//
+////		if (personRepository.findById(dto.getIdPerso()).isPresent()) {
+////			PersonEntity personEntity = personRepository.findById(dto.getIdPerso()).get();
+////			pendidikanEntity.setPersonEntity(personEntity);
+////
+//			pendidikanEntity.setJenjangPendidikan(dto.getJenjang());
+//			pendidikanEntity.setInstitusiPendidikan(dto.getInstitusi());
+//			pendidikanEntity.setThnMasuk(dto.getTahunMasuk());
+//			pendidikanEntity.setThnLulus(dto.getTahunLulus());
+//
+//		}
+//		return pendidikanEntity;
+//	}
 
 	private PendidikanDto convertToDto(PendidikanEntity pendidikanEntity) {
 		PendidikanDto pendidikanDto = new PendidikanDto();

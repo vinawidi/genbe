@@ -2,6 +2,7 @@ package com.vina.genbe.model.entity;
 
 import java.sql.Date;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 public class BiodataEntity {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_bio")
 	private Integer idBio;
 	
