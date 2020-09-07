@@ -13,33 +13,33 @@
 		<div class="card-body bg-secondary">
 			<div class="form-group">
 				<label for="exampleInputPassword1">NIK</label> <input type="number"
-					class="form-control" id="niK" placeholder="Enter NIK">
+					class="form-control" id="niK" name="nik" placeholder="Enter NIK">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Nama</label> <input type="text"
-					class="form-control" id="namA" placeholder="Enter Nama">
+					class="form-control" id="namA" name="nama" placeholder="Enter Nama">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Alamat</label> <input type="text"
-					class="form-control" id="alamaT"
+					class="form-control" id="alamaT" name="alamat"
 					placeholder="Enter Alamat">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Nomor HP</label> <input
-					type="number" class="form-control" id="hp"
+					type="number" class="form-control" id="hp" name="no_hp"
 					placeholder="Enter Nomor">
 			</div>
-	 <div class="form-group">
+	 		<div class="form-group">
 				<label>Tanggal Lahir:</label>
 				<div class="form-group">
-					<input type="date" class="form-control"
-						id="tglLahir" data-inputmask-alias="datetime"
+					<input type="date" class="form-control date"
+						id="tglLahir" name="tanggal_lahir" data-inputmask-alias="datetime"
 						data-inputmask-inputformat="dd/mm/yyyy" data-mask="">
 				</div>
 			</div> 		
 			<div class="form-group">
 				<label for="exampleInputPassword1">Tempat Lahir</label> <input
-					type="text" class="form-control" id="tmpLahir"
+					type="text" class="form-control" id="tmpLahir" name="tempat_lahir"
 					placeholder="Enter Tempat">
 			</div>
 			<!-- /.input group -->
@@ -48,6 +48,7 @@
 	<div class="card-footer" align="right">
 		<button id="submitaja" type="button" class="btn bg-navy toastsDefaultSuccess">Submit</button>
 	</div>
+	<div id = "postResultDiv"></div>
 <!-- <table id="tblAddRow" border="1">
 			<thead align="center" class = "bg-navy">
 				<tr>
@@ -64,11 +65,12 @@
 			<tbody id="isi" class= "bg-secondary" align="center">
 			</tbody>
 		</table> -->		
-		<th:block layout:fragment="add-scripts">
+		
 	<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
 		<script
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script>
+  <th:block layout:fragment="add-scripts">
+<!-- <script>
 	$(document).ready(function() {
 		$("#add_data").click(function(){
 			
@@ -76,7 +78,7 @@
 					NIK : $("#niK").val(),
 					Nama : $("#namA").val(),
 					Alamat : $("#alamaT").val(),
-					HP : $("#hp").val(),	
+					HP 		: $("#hp").val(),	
 					TglLahir : $("#tglLahir").val(),
 					TmpLahir : $("#tmpLahir").val()				
 			}
@@ -101,7 +103,7 @@
 		});
 		
 	});
-	</script>
+	</script> -->	
  <!-- <script>
 		$(document).ready(function() {
 			$("#submitaja").click(function() {
@@ -135,5 +137,40 @@
 
   </script> -->	
 </th:block>
+<th:block layout:fragment="scripts">
+<script>
+	$(document).ready(function() {
+		$("#submitaja").click(function(){
+			
+			var PersonBiodata = {
+					niK : $("#niK").val(),
+					namA : $("#namA").val(),
+					alamaT : $("#alamaT").val(),
+					hp 		: $("#hp").val(),	
+					tglLahir : $(".date").val(),
+					tmpLahir : $("#tmpLahir").val()				
+			}
+			console.log(PersonBiodata);
+			$.ajax({
+				headers : {
+					'Authorization' : 'Basic xxxxxxxxxxxxx',
+					'X-CSRF-TOKEN' : 'xxxxxxxxxxxxxxxxxxxx',
+					'Content-Type' : 'application/json'
+				},
+				type : 'POST',
+				url : '/person',
+				data : JSON.stringify(PersonBiodata),				
+				success : function () {
+					alert('Success!');
+					
+				}, error : function (){
+					alert("error");
+				}				
+			});
+		});
+		
+	});
+	</script>
+</th:block> 
 </div>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="card card-navy" layout:fragment="content-body">
+	<div class="card-header">
+		<h3 class="card-title">Data Detail Biodata</h3>
+	</div>
+	<!-- /.card-header -->
+	<!-- form start -->
+	<form role="form" id="add_data">
+		<div class="card-body bg-secondary">
+			<div class="form-group">
+				<label for="exampleInputPassword1">NIK</label> <input type="number"
+					class="form-control" id="niK" placeholder="Enter NIK">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Nama</label> <input type="text"
+					class="form-control" id="namA" placeholder="Enter Nama">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Alamat</label> <input type="text"
+					class="form-control" id="alamaT"
+					placeholder="Enter Alamat">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Nomor HP</label> <input
+					type="number" class="form-control" id="hp"
+					placeholder="Enter Nomor">
+			</div>
+	 <div class="form-group">
+				<label>Tanggal Lahir:</label>
+				<div class="form-group">
+					<input type="date" class="form-control"
+						id="tglLahir" data-inputmask-alias="datetime"
+						data-inputmask-inputformat="dd/mm/yyyy" data-mask="">
+				</div>
+			</div> 		
+			<div class="form-group">
+				<label for="exampleInputPassword1">Tempat Lahir</label> <input
+					type="text" class="form-control" id="tmpLahir"
+					placeholder="Enter Tempat">
+			</div>
+			<!-- /.input group -->
+		</div>
+	</form>
+	<div class="card-footer" align="right">
+		<button id="submitaja" type="button" class="btn bg-navy toastsDefaultSuccess">Submit</button>
+	</div>
+<!-- <table id="tblAddRow" border="1">
+			<thead align="center" class = "bg-navy">
+				<tr>
+					<th>NIK</th>
+					<th>Nama</th>
+					<th>Alamat</th>
+					<th>HP</th>
+					<th>Tanggal Lahir</th>
+					<th>Tempat Lahir</th>
+					<th>Umur</th>
+					<th>Pendidikan Terakhir</th>
+				</tr>
+			</thead>
+			<tbody id="isi" class= "bg-secondary" align="center">
+			</tbody>
+		</table> -->		
+		<th:block layout:fragment="add-scripts">
+	<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+		<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("#add_data").click(function(){
+			
+			var PersonBiodata = {
+					NIK : $("#niK").val(),
+					Nama : $("#namA").val(),
+					Alamat : $("#alamaT").val(),
+					HP : $("#hp").val(),	
+					TglLahir : $("#tglLahir").val(),
+					TmpLahir : $("#tmpLahir").val()				
+			}
+			console.log(PersonBiodata);
+			$.ajax({
+				headers : {
+					'Authorization' : 'Basic xxxxxxxxxxxxx',
+					'X-CSRF-TOKEN' : 'xxxxxxxxxxxxxxxxxxxx',
+					'Content-Type' : 'application/json'
+				},
+				type : 'POST',
+				url : '/person',
+				data : JSON.stringify(PersonBiodata),
+				dataType : 'application/json',
+				success : function () {
+					alert('Success!');
+				}, error : function (xhr, ajaxOptions, thrownError){
+					alert(xhr.status);
+					alert(thrownError);	
+				}				
+			});
+		});
+		
+	});
+	</script>
+ <!-- <script>
+		$(document).ready(function() {
+			$("#submitaja").click(function() {
+				Swal.fire({
+					position : 'center-middle',
+					icon : 'success',
+					title : 'Success!! Your data has been saved',					
+					showConfirmButton : false,
+					timer : 1500
+				})
+			});
+		});
+	</script>  --> 
+<!-- <script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    $('.toastsDefaultSuccess').click(function() {
+        $(document).Toasts('create', {
+          class: 'bg-success', 
+          title: 'Toast Title',
+          subtitle: 'Subtitle',
+          body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        })
+      });
+  });
+
+  </script> -->	
+</th:block>
+</div>
+</html>

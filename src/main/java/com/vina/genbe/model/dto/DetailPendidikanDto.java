@@ -1,6 +1,6 @@
 package com.vina.genbe.model.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class DetailPendidikanDto {
 
@@ -49,8 +49,8 @@ public class DetailPendidikanDto {
 		return tglLahir;
 	}
 
-	public void setTglLahir(Date tglLahir) {
-		this.tglLahir = tglLahir;
+	public void setTglLahir(Date date) {
+		this.tglLahir = date;
 	}
 
 	public String getTmpLahir() {

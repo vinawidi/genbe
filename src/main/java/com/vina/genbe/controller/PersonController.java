@@ -1,9 +1,10 @@
 package com.vina.genbe.controller;
 
-import java.sql.Date;
+
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,18 +75,22 @@ public class PersonController {
 
 	@PostMapping
 	public StatusMessageDto insert(@RequestBody PersonBiodataDto dto) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dto.getTglLahir());
+		Integer umur = Year.now().getValue() - calendar.get(Calendar.YEAR);
+//		String biodataUmur = Integer.toString(umur);
 		StatusMessageDto status = new StatusMessageDto();
-		hitungUmur(dto.getTglLahir());
-		if (dto.getNiK().length() == 16 && Integer.parseInt(hitungUmur(dto.getTglLahir())) > 30) {
+//		hitungUmur(dto.getTglLahir());
+		if (dto.getNiK().length() == 16 && umur >= 30 ) {
 			personService.insertPerson(dto);
 			status.setStatus("true");
 			status.setMessage("data berhasil masuk");
 			return status;
-		} else if (Integer.parseInt(hitungUmur(dto.getTglLahir())) > 30 && dto.getNiK().length() != 16) {
+		} else if ( dto.getNiK().length() != 16 && umur >= 30 ) {
 			status.setStatus("false");
 			status.setMessage("data gagal masuk, jumlah digit nik tidak sama dengan 16");
 			return status;
-		} else if (Integer.parseInt(hitungUmur(dto.getTglLahir())) < 30 && dto.getNiK().length() == 16) {
+		} else if (umur < 30 &&  dto.getNiK().length() == 16) {
 			status.setStatus("false");
 			status.setMessage("data gagal masuk, umur kurang dari 30 tahun");
 			return status;
@@ -97,14 +102,15 @@ public class PersonController {
 
 	}
 
-	private String hitungUmur(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		Integer umur = Year.now().getValue() - calendar.get(Calendar.YEAR);
-		String biodataUmur = Integer.toString(umur);
-		return biodataUmur;
 
-	}
+//	private String hitungUmur(Date date) {
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.setTime(date);
+//		Integer umur = Year.now().getValue() - calendar.get(Calendar.YEAR);
+//		String biodataUmur = Integer.toString(umur);
+//		return biodataUmur;
+//
+//	}
 
 	private DetailPendidikanDto convertToDto(PersonEntity personEntity) {
 		DetailPendidikanDto detail = new DetailPendidikanDto();
@@ -114,7 +120,7 @@ public class PersonController {
 		detail.setHp(personEntity.getBiodataEntity().getNoHp());
 		detail.setTglLahir(personEntity.getBiodataEntity().getTanggalLahir());
 		detail.setTmpLahir(personEntity.getBiodataEntity().getTempatLahir());
-		detail.setUmuR(hitungUmur(personEntity.getBiodataEntity().getTanggalLahir()));
+//		detail.setUmuR(hitungUmur(personEntity.getBiodataEntity().getTanggalLahir()));
 		detail.setPendidikan_terakhir(pendidikanRepository.akhirPendidikan(personEntity.getId()));
 		return detail;
 	}

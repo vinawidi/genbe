@@ -1,6 +1,8 @@
 package com.vina.genbe.model.entity;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -65,5 +67,7 @@ public class BiodataEntity {
 	public void setPersonEntity(PersonEntity personEntity) {
 		this.personEntity = personEntity;
 	}
+
+	
 
 }

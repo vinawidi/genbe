@@ -1,6 +1,6 @@
 package com.vina.genbe.model.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BiodataDto {
 
@@ -30,8 +30,8 @@ public class BiodataDto {
 		return tanggalLahir;
 	}
 
-	public void setTanggalLahir(Date tanggalLahir) {
-		this.tanggalLahir = tanggalLahir;
+	public void setTanggalLahir(Date date) {
+		this.tanggalLahir = date;
 	}
 
 	public String getTempatLahir() {
