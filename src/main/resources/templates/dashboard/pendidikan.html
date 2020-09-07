@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="card card-navy" layout:fragment="content-body">
+	<div class="card-header">
+		<h3 class="card-title">Data Detail Pendidikan</h3>
+	</div>
+	<!-- /.card-header -->
+	<!-- form start -->
+	<form role="form" id="biodata1">
+		<div class="card-body bg-secondary">
+<!-- <fieldset class="card card-outline"> -->			
+				<!-- 		<div class="form-group">
+		 <label for="exampleInputPassword1">NIK</label> <input type="number"
+					class="form-control" id="exampleInputNIK" placeholder="Enter NIK">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Nama</label> <input type="text"
+					class="form-control" id="exampleInputNama" placeholder="Enter Nama">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Alamat</label> <input type="text"
+					class="form-control" id="exampleInputAlamat"
+					placeholder="Enter Alamat">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">No. HP</label> <input
+					type="number" class="form-control" id="exampleInputNomor"
+					placeholder="Enter Nomor">
+			</div>
+			<div class="form-group">
+				<label>Tanggal Lahir:</label>
+				<div class="input-group">
+					<input type="date" class="form-control"
+						id="exampleInputTanggalLahir" data-inputmask-alias="datetime"
+						data-inputmask-inputformat="dd/mm/yyyy" data-mask="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Tempat Lahir</label> <input
+					type="text" class="form-control" id="exampleInputTempat"
+					placeholder="Enter Tempat">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Umur</label> <input type="number"
+					class="form-control" id="exampleInputUmur" placeholder="Enter umur">
+			</div> -->
+
+
+				<div class="form-group">
+					<label for="Pendidikan"> Pendidikan : </label> <select
+						class="form-control" id="exampleInputPendidikan">
+						<option selected>Pilih...</option>
+						<option data-select2-id="30">SD</option>
+						<option data-select2-id="31">SMP</option>
+						<option data-select2-id="32">SMA</option>
+						<option data-select2-id="33">D3</option>
+						<option data-select2-id="34">S1</option>
+						<option data-select2-id="35">S2</option>
+						<option data-select2-id="36">S3</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputInstitusi">Institusi</label> <input
+						type="text" class="form-control" id="exampleInputInstitusi"
+						placeholder="Enter Institusi">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputMasuk">Tahun Masuk</label> <input
+						type="number" class="form-control" id="exampleInputMasuk"
+						placeholder="Enter Tahun">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputLulus">Tahun Lulus</label> <input
+						type="number" class="form-control" id="exampleInputLulus"
+						placeholder="Enter Tahun">
+				</div>
+	<!-- </fieldset> -->	
+	</div>	
+			<a href="javascript:void(0);" align="right" class="addForm">Tambah Pendidikan</a>
+	 		<fieldset class="card card-outline card-gray-dark">
+				<div class="form-group" id="additional"></div>
+			</fieldset>	 				
+			<div class="card-footer" align="right">
+				<button id="submitaja" type="button" class="btn bg-navy">Submit</button>
+			</div>
+		
+		<!-- /.input group -->
+		<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.1/parsley.min.js"></script>
+	<!-- <div class="card-body bg-secondary"> -->	
+		<script>
+		
+			$(document).ready(function() {
+				
+								$(".addForm").click(function() {
+													$("#additional").append(
+																			'<div class="card-body bg-secondary">'
+																		 	+ '<fieldset class="card card-outline", id="fs">'
+																			+ '<div class="form-group bg-secondary">'
+																			+ '<label for="pendidikan">Pendidikan:</label><select class="form-control" id="jenjang">'
+																			+ '<option selected>Pilih...</option>'
+																			+ '<option value="sd">SD</option>'
+																			+ '<option value="smp">SMP</option>'
+																			+ '<option value="sma">SMA</option>'
+																			+ '<option value="s1">S1</option>'
+																			+ '<option value="s2">S2</option>'
+																			+ '<option value="s3">S3</option>'
+																			+ '</select>'
+																			+ '</div>'
+																			+ '<div class="form-group bg-secondary">'
+																			+ '<label for="institusi">Institusi:</label><input type="text" class="form-control" id="institusi" placeholder="Enter institusi">'
+																			+ '</div>'
+																			+ '<div class="form-group bg-secondary">'
+																			+ '<label for="masuk">Tahun Masuk:</label><input type="text" class="form-control" id="masuk" placeholder="Enter tahun ">'
+																			+ '</div>'
+																			+ '<div class="form-group bg-secondary">'
+																			+ '<label for="lulus">Tahun Lulus:</label><input type="text" class="form-control" id="lulus" placeholder="Enter tahun">'
+																			+ '</div>'
+																			+ '<a href="javascript:void(0);" class="remAdd">Remove</a>'
+																			+																			
+																			'</fieldset>'
+																			+ '</div>'
+																			);
+												});
+								$('#additional').on('click','.remAdd',function() {
+													$(this).parent('fieldset').remove();
+												});
+							});
+		</script>
+	<!-- </div> -->	
+
+		<!-- '<div class="card-body bg-secondary">' + '</div>' + -->
+
+	</form>
+
+	<script>
+		$(document).ready(function() {
+			$("#submitaja").click(function() {
+				Swal.fire({
+					position : 'center-middle',
+					icon : 'success',
+					title : 'Success!! Your data has been saved',
+					showConfirmButton : false,
+					timer : 1500
+				})
+			});
+		});
+	</script>
+	<!-- <script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    $('.toastsDefaultSuccess').click(function() {
+        $(document).Toasts('create', {
+          class: 'bg-success', 
+          title: 'Toast Title',
+          subtitle: 'Subtitle',
+          body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        })
+      });
+  });
+
+  </script> -->
+
+</div>
+</html>
