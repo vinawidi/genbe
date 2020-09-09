@@ -44,7 +44,7 @@ public class PendidikanController {
 		return statusMessageDto;
 	}
 
-	@PostMapping
+	@PostMapping("/{id}")
 	public StatusMessageDto insert(@RequestBody List<PendidikanDto> dto, @RequestParam Integer id) {
 		try {
 			pendService.insertPendidikan(dto, id);

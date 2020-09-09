@@ -2,7 +2,7 @@ package com.vina.genbe.model.entity;
 
 
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.*;
 
@@ -48,8 +48,8 @@ public class BiodataEntity {
 		return tanggalLahir;
 	}
 
-	public void setTanggalLahir(Date tanggalLahir) {
-		this.tanggalLahir = tanggalLahir;
+	public void setTanggalLahir(Date date) {
+		this.tanggalLahir = date;
 	}
 
 	public String getTempatLahir() {

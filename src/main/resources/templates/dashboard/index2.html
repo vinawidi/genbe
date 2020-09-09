@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<div class="card card-navy" layout:fragment="content-body">
+	<div class="card-header">
+		<h3 class="card-title">
+			<b>TABEL DETAIL BIODATA</b>
+		</h3>
+	</div>
+	<div class="form-group" id="add">
+		<label for="exampleInputPassword1">NIK</label> <input type="text" class="form-control" id="niK" name="niK"
+			placeholder="Enter NIK">
+	</div>
+	<div class="card-footer" align="right">
+		<button id="searchaja" type="button" class="btn bg-navy toastsDefaultSuccess">Search</button>
+	</div>
+	<div class="card-body table-responsive">
+		<table class="table table-striped table-bordered table-hover nowrap" id="tableBiodata" style="width:100%">
+		</table>
+	</div>
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+
+	<script th:src="@{/assets/js/detail.js}"></script>
+
+	<script>
+
+		$('#searchaja').click(function () {
+			formBiodata.getbynik($('#niK').val())
+		});
+	</script>
+
+
+</th:block>
+
+</html>

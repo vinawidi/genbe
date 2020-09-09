@@ -6,6 +6,10 @@ public class PendidikanDto {
 	private String institusi;
 	private String tahunMasuk;
 	private String tahunLulus;
+	
+	
+	
+
 
 	public Integer getIdPendidikan() {
 		return idPendidikan;

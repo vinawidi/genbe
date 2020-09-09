@@ -27,6 +27,12 @@ public class BaseMvcController {
 	public String get() {
 		return "dashboard/personbiodata";
 	}
+	
+	@GetMapping("/index2")
+	public String getDetail() {
+		return "dashboard/index2";
+	}
+	
 //	@GetMapping
 //	public List<ProvinsiDto> get() {
 //		List<ProvinsiEntity> provinsiEntityList = provinsiRepository.findAll();
@@ -42,10 +48,12 @@ public class BaseMvcController {
 //	}
 //	 List<PersonBiodataDto> person = new ArrayList<PersonBiodataDto>();
 //	
-	@GetMapping("dashboard1")
+	@GetMapping("pendidikan")
 	public String getPend() {
-		return "dashboard/pendidikan";
+		return "dashboard/coba";
 	}
+	
+
 //	
 //	 @PostMapping(value = "/personbiodata")
 //	  public Response postCustomer(@RequestBody Customer customer) {

@@ -1,5 +1,7 @@
 package com.vina.genbe.service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +86,28 @@ public class ServiceImpl implements PersonService {
 			pendidikanRepository.save(pendidikanEntity);
 		}
 		return pendidikanDto;
+	}
+
+	@Override
+	public DetailPendidikanDto getUmur(DetailPendidikanDto detailPendidikanDto, PersonBiodataDto personBiodataDto) {
+		java.sql.Date date = personBiodataDto.getTglLahir();
+		LocalDate today = LocalDate.now();
+		LocalDate birth = date.toLocalDate();
+		Period umur = Period.between(birth, today); 
+		detailPendidikanDto.setUmuR(Integer.toString(umur.getYears()));
+		return detailPendidikanDto ;
+	}
+
+
+	@Override
+	public DetailPendidikanDto getUmur2(DetailPendidikanDto detailPendidikanDto) {
+		java.sql.Date date = detailPendidikanDto.getTglLahir();
+		LocalDate today = LocalDate.now();
+		LocalDate birth = date.toLocalDate();
+		Period umur1 = Period.between(birth, today);
+		detailPendidikanDto.setUmuR(Integer.toString(umur1.getYears()));
+		return detailPendidikanDto ;
+
 	}
 
 }

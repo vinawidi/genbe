@@ -1,98 +1,75 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org">
 
 <div class="card card-navy" layout:fragment="content-body">
-	<div class="card-header">
+	<div class="card-header" id="modal-pendidikan">
 		<h3 class="card-title">Data Detail Pendidikan</h3>
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
-	<form role="form" id="biodata1">
+	<form role="form" id="datapendidikan">
 		<div class="card-body bg-secondary">
-<!-- <fieldset class="card card-outline"> -->			
-				<!-- 		<div class="form-group">
-		 <label for="exampleInputPassword1">NIK</label> <input type="number"
-					class="form-control" id="exampleInputNIK" placeholder="Enter NIK">
+			
+			<div class="form-group">
+				<label for="exampleInputId">Idperson</label> <input type="number"
+					class="form-control" name="id_person" id="iD"
+					placeholder="Enter Nomor Id">
+			</div>
+
+			<div class="form-group">
+				<label for="Pendidikan"> Pendidikan : </label> <select
+					class="form-control" name="jenjangpendidikan" id="jenjang">
+					<option selected>Pilih...</option>
+					<option data-select2-id="30">SD</option>
+					<option data-select2-id="31">SMP</option>
+					<option data-select2-id="32">SMA</option>
+					<option data-select2-id="33">D3</option>
+					<option data-select2-id="34">S1</option>
+					<option data-select2-id="35">S2</option>
+					<option data-select2-id="36">S3</option>
+				</select>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Nama</label> <input type="text"
-					class="form-control" id="exampleInputNama" placeholder="Enter Nama">
+				<label for="exampleInputInstitusi">Institusi</label> <input
+					type="text" class="form-control" name="institusipendidikan" id="institusi"
+					placeholder="Enter Institusi">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Alamat</label> <input type="text"
-					class="form-control" id="exampleInputAlamat"
-					placeholder="Enter Alamat">
+				<label for="exampleInputMasuk">Tahun Masuk</label> <input
+					type="number" class="form-control" name="tahunmasuk"
+					id="tahunMasuk" placeholder="Enter Tahun">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">No. HP</label> <input
-					type="number" class="form-control" id="exampleInputNomor"
-					placeholder="Enter Nomor">
+				<label for="exampleInputLulus">Tahun Lulus</label> <input
+					type="number" class="form-control" name="tahunLulus"
+					id="tahunLulus" placeholder="Enter Tahun">
 			</div>
-			<div class="form-group">
-				<label>Tanggal Lahir:</label>
-				<div class="input-group">
-					<input type="date" class="form-control"
-						id="exampleInputTanggalLahir" data-inputmask-alias="datetime"
-						data-inputmask-inputformat="dd/mm/yyyy" data-mask="">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Tempat Lahir</label> <input
-					type="text" class="form-control" id="exampleInputTempat"
-					placeholder="Enter Tempat">
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Umur</label> <input type="number"
-					class="form-control" id="exampleInputUmur" placeholder="Enter umur">
-			</div> -->
+			<!-- </fieldset> -->
+		</div>
+		<a href="javascript:void(0);" align="right" class="addForm">Tambah
+			Pendidikan</a>
+		<fieldset class="card card-outline card-gray-dark">
+			<div class="form-group" id="additional"></div>
+		</fieldset>
 
 
-				<div class="form-group">
-					<label for="Pendidikan"> Pendidikan : </label> <select
-						class="form-control" id="exampleInputPendidikan">
-						<option selected>Pilih...</option>
-						<option data-select2-id="30">SD</option>
-						<option data-select2-id="31">SMP</option>
-						<option data-select2-id="32">SMA</option>
-						<option data-select2-id="33">D3</option>
-						<option data-select2-id="34">S1</option>
-						<option data-select2-id="35">S2</option>
-						<option data-select2-id="36">S3</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="exampleInputInstitusi">Institusi</label> <input
-						type="text" class="form-control" id="exampleInputInstitusi"
-						placeholder="Enter Institusi">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputMasuk">Tahun Masuk</label> <input
-						type="number" class="form-control" id="exampleInputMasuk"
-						placeholder="Enter Tahun">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputLulus">Tahun Lulus</label> <input
-						type="number" class="form-control" id="exampleInputLulus"
-						placeholder="Enter Tahun">
-				</div>
-	<!-- </fieldset> -->	
-	</div>	
-			<a href="javascript:void(0);" align="right" class="addForm">Tambah Pendidikan</a>
-	 		<fieldset class="card card-outline card-gray-dark">
-				<div class="form-group" id="additional"></div>
-			</fieldset>	 				
-			<div class="card-footer" align="right">
-				<button id="submitaja" type="button" class="btn bg-navy">Submit</button>
-			</div>
-		
 		<!-- /.input group -->
-		<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.1/parsley.min.js"></script>
-	<!-- <div class="card-body bg-secondary"> -->	
-		<script>
+
+	</form>
+	<div class="modal-footer justify-content-between">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" id="btn-save-biodata" type="button">Save</button>
+                </div>
+<!-- <div class="card-footer" align="right">
+		<button id="submitaja" type="button" class="btn bg-navy">Submit</button>
+	</div>
+ -->	
+	<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.1/parsley.min.js"></script>
+	<script>
 		
 			$(document).ready(function() {
 				
@@ -130,16 +107,50 @@
 													$(this).parent('fieldset').remove();
 												});
 							});
-		</script>
-	<!-- </div> -->	
+	</script>
 
-		<!-- '<div class="card-body bg-secondary">' + '</div>' + -->
+<th:block layout:fragment="add-scripts">
+<script th:src="@{/assets/js/pendidikan.js}"></script>
+ <script>
+ formBiodata.create();
 
-	</form>
+ $('#iD').click(function () {
+     formBiodata.resetForm();
+     $('#modal-pendidikan').modal('show')
+ });
+ 
+ $('#jenjang').click(function () {
+     formBiodata.resetForm();
+     $('#modal-pendidikan').modal('show')
+ });
+ 
+ $('#institusi').click(function () {
+     formBiodata.resetForm();
+     $('#modal-pendidikan').modal('show')
+ });
+ 
+ $('#tahunMasuk').click(function () {
+     formBiodata.resetForm();
+     $('#modal-pendidikan').modal('show')
+ });
+ 
+ $('#tahunLulus').click(function () {
+     formBiodata.resetForm();
+     $('#modal-pendidikan').modal('show')
+ });
+ 
+ $('#btn-save-biodata').click(function () {
+     formBiodata.saveForm()
+ })
+	
+				
+    </script> 	
+
+
 
 	<script>
 		$(document).ready(function() {
-			$("#submitaja").click(function() {
+			$("#btn-save-biodata").click(function() {
 				Swal.fire({
 					position : 'center-middle',
 					icon : 'success',
@@ -150,6 +161,8 @@
 			});
 		});
 	</script>
+
+
 	<!-- <script type="text/javascript">
   $(function() {
     const Toast = Swal.mixin({
