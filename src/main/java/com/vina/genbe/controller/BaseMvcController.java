@@ -23,45 +23,25 @@ public class BaseMvcController {
 	
 	
 	
-	@GetMapping("person")
-	public String get() {
-		return "dashboard/personbiodata";
-	}
+//	@GetMapping("person")
+//	public String get() {
+//		return "dashboard/personbiodata";
+//	}
 	
 	@GetMapping("/index2")
 	public String getDetail() {
 		return "dashboard/index2";
 	}
 	
-//	@GetMapping
-//	public List<ProvinsiDto> get() {
-//		List<ProvinsiEntity> provinsiEntityList = provinsiRepository.findAll();
-//		List<ProvinsiDto> provinsiDtoList = provinsiEntityList.stream().map(this::convertToDto)
-//				.collect(Collectors.toList());
-//		return provinsiDtoList;
-//	}
 	
-//	@GetMapping
-//	public List<PersonBiodataDto> get(){
-//		List<PersonEntity> person = personRepository.findAll();
-//		List<PersonBiodataDto> personBiodataDto = person.stream().map(this::convertToPer)
-//	}
-//	 List<PersonBiodataDto> person = new ArrayList<PersonBiodataDto>();
-//	
 	@GetMapping("pendidikan")
 	public String getPend() {
 		return "dashboard/coba";
 	}
 	
-
-//	
-//	 @PostMapping(value = "/personbiodata")
-//	  public Response postCustomer(@RequestBody Customer customer) {
-//	    cust.add(customer);
-//	 }
-//	@PostMapping("dashboard")
-//	public String getPerson() {
-//		return "dashboard/personbiodata/person";
-//	}
+	@GetMapping("person")
+	public String getModal() {
+		return "dashboard/modalbiodata";
+	}
 
 }

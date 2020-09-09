@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vina.genbe.model.dto.StatusMessageDto;
+//import com.prodemy.prodemyspring.model.dto.BiodataDto;
+//import com.prodemy.prodemyspring.model.entity.Biodata;
 //import com.vina.genbe.model.dto.detailPendidikanDto;
 import com.vina.genbe.model.dto.DetailPendidikanDto;
 //import com.vina.genbe.model.dto.BiodataDto;
@@ -37,15 +40,37 @@ import com.vina.genbe.service.ServiceImpl;
 public class PersonController {
 	private final PersonRepository personRepository;
 	private final PendidikanRepository pendidikanRepository;
+	private final BiodataRepository biodataRepository;
 
 	@Autowired
 	private PersonService personService = new ServiceImpl();
 
 	@Autowired
-	public PersonController(PersonRepository personRepository, PendidikanRepository pendidikanRepository) {
+	public PersonController(PersonRepository personRepository, PendidikanRepository pendidikanRepository, BiodataRepository biodataRepository) {
 		this.personRepository = personRepository;
 		this.pendidikanRepository = pendidikanRepository;
+		this.biodataRepository = biodataRepository;
 	}
+	
+	 @GetMapping("/all")
+	    public List<PersonBiodataDto> getListBiodata() {
+	        List<PersonEntity> personList = personRepository.findAll();
+	        List<PersonBiodataDto> personBiodataDtos = new ArrayList<>();
+	        for (PersonEntity p : personList) {
+	        	PersonBiodataDto dto = new PersonBiodataDto();
+	        	BiodataEntity biodataEntity = biodataRepository.findByPersonEntityId(p.getId());
+	        	dto.setiD(p.getId());
+	        	dto.setAlamaT(p.getAlamat());
+	        	dto.setHp(p.getAlamat());
+	        	dto.setNamA(p.getNama());
+	        	dto.setNiK(p.getNik());
+	        	dto.setTglLahir(biodataEntity.getTanggalLahir());
+	        	dto.setTmpLahir(biodataEntity.getTempatLahir());
+	        	personBiodataDtos.add(dto);
+	        	
+	        }
+	        return personBiodataDtos;
+	    }
 
 	@GetMapping("/{nik}")
 	public List<Object> cariData(@PathVariable String nik) {

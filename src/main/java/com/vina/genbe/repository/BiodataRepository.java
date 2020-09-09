@@ -12,5 +12,6 @@ import com.vina.genbe.model.entity.BiodataEntity;
 public interface BiodataRepository extends JpaRepository<BiodataEntity, Integer> {
 
 	List<BiodataEntity> findAllByPersonEntityId(Integer id);
+	BiodataEntity  findByPersonEntityId(Integer Id);
 
 }
