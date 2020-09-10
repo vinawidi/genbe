@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+	<div class="col-sm-6">
+		<h1 class="m-0 text-dark">Data Detail Pendidikan</h1>
+	</div>
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="#">Biodata</a></li>
+			<li class="breadcrumb-item active">Kelola</li>
+		</ol>
+	</div>
+</div>
+
+<div class="row" layout:fragment="content-body">
+
+
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">List Biodata</h3>
+				<button class="float-right btn-primary" id="btn-tambah-biodata">Tambah</button>
+			</div>
+			
+			<!-- /.card-header -->
+			  <div class="card-body table-responsive">
+                <table class="table table-striped table-bordered table-hover nowrap" id="tableBiodata"
+                       style="width:100%"></table>
+            </div> 
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<!-- /.col -->
+
+
+	<div class="modal fade" id="modal-biodata">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Form Pendidikan</h4>
+					<button aria-label="Close" class="close" data-dismiss="modal"
+						type="button">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card-header"></div>
+					<div class="form-group">
+							<label> Id : </label>
+							 <input class="form-control" id="iD"
+								name="idperson" placeholder="Id" required type="text">
+						</div>
+					<form id="form-biodata" role="form">
+						<!-- <input name="id" type="hidden" /> -->
+
+						
+
+						<div class="form-group">
+							<label for="Pendidikan"> Pendidikan : </label> <select
+								class="form-control" name="jenjang" id="jenjangku">
+								<option selected>Pilih...</option>
+								<option data-select2-id="30">SD</option>
+								<option data-select2-id="31">SMP</option>
+								<option data-select2-id="32">SMA</option>
+								<option data-select2-id="33">D3</option>
+								<option data-select2-id="34">S1</option>
+								<option data-select2-id="35">S2</option>
+								<option data-select2-id="36">S3</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Institusi : </label> <input class="form-control"
+								id="institusiku" name="institusi"
+								placeholder="input institusi" required type="text">
+						</div>
+
+						<div class="form-group">
+							<label>Tahun Masuk : </label> <input class="form-control"
+								id="tahunMasukku" name="tahunMasuk"
+								placeholder="Input Tahun masuk" required type="text">
+						</div>
+
+						<div class="form-group">
+							<label>Tahun Lulus : </label> <input class="form-control"
+								id="tahunLulusku" name="tahunLulus"
+								placeholder="Input Tahun lulus" required type="text">
+						</div>
+
+
+					</form>
+					
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+					<button class="btn btn-primary" id="btn-save-biodata" type="button">Save</button>
+				</div>
+				
+			</div>
+			
+			<!-- /.modal-content -->
+		</div>
+        <!-- /.modal-dialog -->
+	</div>  
+	<div class="modal fade" id="modal-edit">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Form Pendidikan</h4>
+					<button aria-label="Close" class="close" data-dismiss="modal"
+						type="button">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card-header"></div>
+					<!-- <div class="form-group">
+							<label> Id : </label>
+							 <input class="form-control" id="iD"
+								name="idperson" placeholder="Id" required type="text">
+						</div> -->
+					<form id="form-edit" role="form">
+						 <input name="id" type="hidden" />
+
+						
+
+						<div class="form-group">
+							<label for="Pendidikan"> Pendidikan : </label> <select
+								class="form-control" name="jenjang" id="jenjangku">
+								<option selected>Pilih...</option>
+								<option data-select2-id="30">SD</option>
+								<option data-select2-id="31">SMP</option>
+								<option data-select2-id="32">SMA</option>
+								<option data-select2-id="33">D3</option>
+								<option data-select2-id="34">S1</option>
+								<option data-select2-id="35">S2</option>
+								<option data-select2-id="36">S3</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Institusi : </label> <input class="form-control"
+								id="institusiku" name="institusi"
+								placeholder="input institusi" required type="text">
+						</div>
+
+						<div class="form-group">
+							<label>Tahun Masuk : </label> <input class="form-control"
+								id="tahunMasukku" name="tahunMasuk"
+								placeholder="Input Tahun masuk" required type="text">
+						</div>
+
+						<div class="form-group">
+							<label>Tahun Lulus : </label> <input class="form-control"
+								id="tahunLulusku" name="tahunLulus"
+								placeholder="Input Tahun lulus" required type="text">
+						</div>
+
+
+					</form>
+					
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+					<button class="btn btn-primary" id="btn-save-edit" type="button">Save</button>
+				</div>
+				
+			</div>
+			
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	
+	<div class="card-header" align ="right">
+		<button class="float-right btn-primary" id="btn-submit">Submit</button>
+	</div>
+
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+	<script th:src="@{/assets/js/pendidikanmodaledit.js}"></script>
+
+	<script>
+		var dataTable = [];
+		tableBiodata.create();
+		$('#btn-tambah-biodata').click(function() {
+			formBiodata.resetForm();
+			$('#modal-biodata').modal('show');
+			//  $('#btn-#btn-tambah-biodata').attr('disabled', true);
+			//  formBiodata.saveFrom();
+
+		});
+
+		$('#btn-submit').click(function() {
+			formBiodata.saveForm()
+			// $('#modal-biodata').modal('show');
+			// $('#btn-#btn-tambah-biodata').attr('disabled', false);
+		});				
+		$('#btn-save-biodata').click(function() {
+			
+			var dataResult = getJsonForm($("#form-biodata").serializeArray(), true)	
+			dataTable.push(dataResult);
+			tableBiodata.create();
+			// formBiodata.saveTabel();
+			$('#form-biodata')[0].reset();
+			$('#modal-biodata').modal('hide');
+
+        });
+        $('#btn-save-edit').click(function () {
+			formBiodata.saveEditTable();
+			tableBiodata.create();
+			
+        });
+
+	</script>
+</th:block>
+
+</html>
+
+
