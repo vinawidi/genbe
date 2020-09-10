@@ -51,7 +51,8 @@
 
                     </div>
                     <form id="form-biodata" role="form">
-                        <input name="id" type="hidden"/>
+                        <input name="iD" id = "idperson" type="hidden"/>
+                         <input name="idBio" id = "idbio" type="hidden"/>
 
                         <div class="form-group">
                             <label>NIK : </label>
@@ -109,16 +110,19 @@
     <script th:src="@{/assets/js/modal.js}"></script>
 
     <script>
+     
         tableBiodata.create();
 
 
         $('#btn-tambah-biodata').click(function () {
+        	$('#idperson').val('');
+        	$('#idbio').val('');
             formBiodata.resetForm();
             $('#modal-biodata').modal('show')
         });
 
         $('#btn-save-biodata').click(function () {
-            formBiodata.saveForm()
+            formBiodata.saveEdit()
         })
 
     </script>

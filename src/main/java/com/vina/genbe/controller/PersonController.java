@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vina.genbe.model.dto.StatusMessageDto;
 //import com.prodemy.prodemyspring.model.dto.BiodataDto;
 //import com.prodemy.prodemyspring.model.entity.Biodata;
+//import com.prodemy.prodemyspring.model.dto.BiodataDto;
+//import com.prodemy.prodemyspring.model.entity.Biodata;
 //import com.vina.genbe.model.dto.detailPendidikanDto;
 import com.vina.genbe.model.dto.DetailPendidikanDto;
 //import com.vina.genbe.model.dto.BiodataDto;
@@ -51,6 +53,41 @@ public class PersonController {
 		this.pendidikanRepository = pendidikanRepository;
 		this.biodataRepository = biodataRepository;
 	}
+//	@GetMapping("/{idAja}")
+//	  public BiodataDto getBiodata(@PathVariable Integer idAja) {
+//	        Biodata biodata = biodataRepository.findById(idAja).get();
+//	        BiodataDto biodataDto = new BiodataDto();
+//	        // jika tidak pakai model mapper maka perlu setter getter satu satu
+//	        biodataDto.setId(biodata.getId());
+//	        biodataDto.setAlamat(biodata.getAlamat());
+//	        biodataDto.setNama(biodata.getNama());
+//	        biodataDto.setGolonganDarah(biodata.getDetailBiodata().getGolonganDarah());
+//	        biodataDto.setTempatLahir(biodata.getDetailBiodata().getTempatLahir());
+//	        biodataDto.setIdDetail(biodata.getDetailBiodata().getId().toString());
+//
+//	        return biodataDto;
+//	    }
+	
+	@GetMapping("/detail/{iD}")
+	 public PersonBiodataDto getpersonBiodata(@PathVariable Integer iD) {
+//        List<PersonEntity> personList = personRepository.findById(id);
+//        List<PersonBiodataDto> personBiodataDtos = new ArrayList<>();
+//        for (PersonEntity p : personList) {
+			PersonEntity personEntity = personRepository.findById(iD).get();
+        	PersonBiodataDto dto = new PersonBiodataDto();
+//        	BiodataEntity biodataEntity = biodataRepository.findById(iD).get();
+        	dto.setiD(personEntity.getId());
+        	dto.setIdBio(personEntity.getBiodataEntity().getIdBio());
+        	dto.setAlamaT(personEntity.getAlamat());
+        	dto.setHp(personEntity.getBiodataEntity().getNoHp());
+        	dto.setNamA(personEntity.getNama());
+        	dto.setNiK(personEntity.getNik());
+        	dto.setTglLahir(personEntity.getBiodataEntity().getTanggalLahir());
+        	dto.setTmpLahir(personEntity.getBiodataEntity().getTempatLahir());
+//        	personBiodataDtos.add(dto);
+        	
+        return dto;
+    }
 	
 	 @GetMapping("/all")
 	    public List<PersonBiodataDto> getListBiodata() {

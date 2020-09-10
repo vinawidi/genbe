@@ -36,7 +36,7 @@ public class BaseMvcController {
 	
 	@GetMapping("pendidikan")
 	public String getPend() {
-		return "dashboard/coba";
+		return "dashboard/pendidikanedit";
 	}
 	
 	@GetMapping("person")

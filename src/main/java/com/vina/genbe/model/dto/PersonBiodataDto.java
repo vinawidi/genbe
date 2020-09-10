@@ -5,6 +5,7 @@ import java.sql.Date;
 public class PersonBiodataDto {
 
 	private Integer iD;
+	private Integer idBio;
 	private String niK;
 	private String namA;
 	private String alamaT;
@@ -18,6 +19,16 @@ public class PersonBiodataDto {
 
 	public void setiD(Integer iD) {
 		this.iD = iD;
+	}
+
+	
+
+	public Integer getIdBio() {
+		return idBio;
+	}
+
+	public void setIdBio(Integer idBio) {
+		this.idBio = idBio;
 	}
 
 	public String getNiK() {

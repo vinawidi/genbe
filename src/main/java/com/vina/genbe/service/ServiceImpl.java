@@ -35,18 +35,21 @@ public class ServiceImpl implements PersonService {
 		personEntity.setNik(dto.getNiK());
 		personEntity.setNama(dto.getNamA());
 		personEntity.setAlamat(dto.getAlamaT());
+		personEntity.setId(dto.getiD());
 		return personEntity;
 
 	}
 
 	private BiodataEntity convertToEntity2(PersonBiodataDto dto) {
 
-//			PersonEntity personEntity = new PersonEntity();
-//			personEntity =  personRepository.findById(dto.getiD()).get();
+			PersonEntity personEntity = new PersonEntity();
+			personEntity =  personRepository.findById(dto.getiD()).get();
 		BiodataEntity biodataEntity = new BiodataEntity();
 		biodataEntity.setNoHp(dto.getHp());
 		biodataEntity.setTanggalLahir(dto.getTglLahir());
 		biodataEntity.setTempatLahir(dto.getTmpLahir());
+		biodataEntity.setIdBio(dto.getIdBio());
+		biodataEntity.setPersonEntity(personEntity);
 
 		return biodataEntity;
 	}

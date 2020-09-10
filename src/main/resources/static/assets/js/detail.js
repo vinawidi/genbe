@@ -40,8 +40,8 @@ var formBiodata = {
             dataType: 'json',
             // data: JSON.stringify(),
             success: function (result) {
-                console.log(result);
-                console.log(result[0].status);
+                // console.log(result);
+                // console.log(result[0].status);
                 if (result[0].status=='true') {
                     $('#tableBiodata').DataTable({
                         data: [result[0].detailPendidikanDto],
@@ -80,11 +80,9 @@ var formBiodata = {
                             }                          
                         ]
                     });
-                    alert('success!!')
-                } else {
-                    alert('error');
-
+                   
                 }
+                alert('status: ' + result[0].status + '\n' + 'message: ' + result[0].message);
             },
             erorrr: function (err) {
                 console.log(err);

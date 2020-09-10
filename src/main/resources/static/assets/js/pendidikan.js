@@ -157,8 +157,8 @@ var formBiodata = {
                             // {
                             //     title: "Action",
                             //     data: null,
-                            //     render: function (data, type, row) {
-                            //         return "<button class='btn-primary' onclick=formBiodata.setEditData('" + data.id + "')>Edit</button>"
+                            //     render: function (data, type, full, meta) {
+                            //         return "<button class='btn-primary' onclick=formBiodata.setEditData('" + meta.row + "')>Edit</button>"
                             //     }
                             // }
                         ]
@@ -174,21 +174,47 @@ var formBiodata = {
         });
 
     }
+    // setEditData = function (idArray) {
+    //     var isi = pendidikan[idArray];
+        
+    //     formBiodata.resetForm();
+
+    //     $.ajax({
+    //         url: '/pendidikan' + idCabang,
+    //         method: 'get',
+    //         contentType: 'application/json',
+    //         dataType: 'json',
+    //         success: function (dataResult) {
+    //             if (xhr.status == 200 || xhr.status == 201) {
+    //                 $('#form-biodata').fromJSON(JSON.stringify(dataResult));
+    //                 $('#modal-biodata').modal('show')
+
+    //             } else {
+    //                 alert('error edit');
+    //             }
+    //         },
+    //         erorrr: function (err) {
+    //             console.log(err);
+    //         }
+    //     });
+    // }
+
+
 // setEditData: function (idCabang) {
 //     formBiodata.resetForm();
 
 //     $.ajax({
-//         url: '/pendidikan' + idCabang,
+//         url: '/api/biodata/' + idCabang,
 //         method: 'get',
 //         contentType: 'application/json',
 //         dataType: 'json',
-//         success: function (hasil) {
+//         success: function (res, status, xhr) {
 //             if (xhr.status == 200 || xhr.status == 201) {
-//                 $('#form-biodata').fromJSON(JSON.stringify(hasil));
+//                 $('#form-biodata').fromJSON(JSON.stringify(res));
 //                 $('#modal-biodata').modal('show')
 
 //             } else {
-//                 alert('error edit');
+
 //             }
 //         },
 //         erorrr: function (err) {
@@ -197,5 +223,5 @@ var formBiodata = {
 //     });
 
 
-// };
+// }
 

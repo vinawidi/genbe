@@ -45,7 +45,7 @@ var tableBiodata = {
                                 title: "Action",
                                 data: null,
                                 render: function (data, type, row) {
-                                    return "<button class='btn-primary' onclick=formBiodata.setEditData('" + data.id + "')>Edit</button>"
+                                    return "<button class='btn-primary' onclick=formBiodata.setEditData('" + data.iD + "')>Edit</button>"
                                 }
                             }
                         ]
@@ -78,29 +78,27 @@ var formBiodata = {
                 contentType: 'application/json',
                 dataType: 'json',
                 data: JSON.stringify(dataResult),
-                success: function (res, status, xhr) {
-                    if (xhr.status == 200 || xhr.status == 201) {
-                        tableBiodata.create();
-                        $('#modal-biodata').modal('hide')
-
-                    } else {
-
-                    }
+                success: function (hasil) {
+                    tableBiodata.create();
+                    $('#modal-biodata').modal('hide')
+                    alert('status: ' + hasil.status + '\n' + 'message: ' + hasil.message);
                 },
                 erorrr: function (err) {
                     console.log(err);
                 }
             });
         }
-    }, setEditData: function (idCabang) {
+    }, setEditData: function (iD) {
+        console.log(iD)
         formBiodata.resetForm();
 
         $.ajax({
-            url: '/api/biodata/' + idCabang,
+            url: '/person/detail/' + iD,
             method: 'get',
             contentType: 'application/json',
             dataType: 'json',
             success: function (res, status, xhr) {
+                console.log(res)
                 if (xhr.status == 200 || xhr.status == 201) {
                     $('#form-biodata').fromJSON(JSON.stringify(res));
                     $('#modal-biodata').modal('show')
@@ -114,7 +112,31 @@ var formBiodata = {
             }
         });
 
-
+        // return res
+    },
+    saveEdit: function () {
+        if ($('#form-biodata').parsley().validate()) {
+            var dataResult = getJsonForm($("#form-biodata").serializeArray(), true);
+            dataResult.iD = parseInt(dataResult.iD)
+            dataResult.idBio = parseInt(dataResult.idBio)
+            console.log(dataResult)
+            $.ajax({
+                url: '/person',
+                method: 'post',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(dataResult),
+                success: function (hasil2) {
+                  
+                    tableBiodata.create();
+                    $('#modal-biodata').modal('hide')
+                    alert('status: ' + hasil2.status + '\n' + 'message: ' + hasil2.message);
+                },
+                erorrr: function (err) {
+                    console.log(err);
+                }
+            });
+        }
     }
 
 };
