@@ -45,7 +45,7 @@ var tableBiodata = {
                                 title: "Action",
                                 data: null,
                                 render: function (data, type, row) {
-                                    return "<button class='btn-primary' onclick=formBiodata.setEditData('" + data.iD + "')>Edit</button>"
+                                    return "<button class='bg-gray' onclick=formBiodata.setEditData('" + data.iD + "')>Edit</button>"
                                 }
                             }
                         ]
@@ -127,12 +127,26 @@ var formBiodata = {
                 dataType: 'json',
                 data: JSON.stringify(dataResult),
                 success: function (hasil2) {
-                  
+
                     tableBiodata.create();
                     $('#modal-biodata').modal('hide')
-                    alert('status: ' + hasil2.status + '\n' + 'message: ' + hasil2.message);
+                    if (hasil2.status == 'true') {
+                        // console.log(hasil2);
+                        Swal.fire({
+                            icon: 'success',
+                            title: hasil2.status + '\n' + hasil2.message
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: hasil2.status + '\n' + hasil2.message
+                        })
+                    }
+                    // location.reload('true');
+
                 },
-                erorrr: function (err) {
+                error: function (err) {
+                    alert(err.message),
                     console.log(err);
                 }
             });

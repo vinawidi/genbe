@@ -10,7 +10,7 @@ public interface PersonService {
 	PersonBiodataDto insertPerson(PersonBiodataDto personBiodataDto);
 
 	List<PendidikanDto> insertPendidikan(List<PendidikanDto> pendidikanDto, Integer id);
-	DetailPendidikanDto getUmur(DetailPendidikanDto detailPendidikanDto, PersonBiodataDto personBiodataDto);
+	DetailPendidikanDto getAge(DetailPendidikanDto detailPendidikanDto, PersonBiodataDto personBiodataDto);
 	DetailPendidikanDto getUmur2(DetailPendidikanDto detailPendidikanDto);
 
 }

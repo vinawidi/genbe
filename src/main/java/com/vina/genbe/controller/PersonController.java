@@ -1,12 +1,11 @@
 package com.vina.genbe.controller;
 
 
-import java.time.Year;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.sql.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+// import java.sql.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,22 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vina.genbe.model.dto.StatusMessageDto;
-//import com.prodemy.prodemyspring.model.dto.BiodataDto;
-//import com.prodemy.prodemyspring.model.entity.Biodata;
-//import com.prodemy.prodemyspring.model.dto.BiodataDto;
-//import com.prodemy.prodemyspring.model.entity.Biodata;
-//import com.vina.genbe.model.dto.detailPendidikanDto;
 import com.vina.genbe.model.dto.DetailPendidikanDto;
-//import com.vina.genbe.model.dto.BiodataDto;
 import com.vina.genbe.model.dto.PersonBiodataDto;
 import com.vina.genbe.model.dto.StatusDto;
-//import com.vina.genbe.model.dto.PersonDto;
 import com.vina.genbe.model.entity.BiodataEntity;
-//import com.vina.genbe.model.entity.BiodataEntity;
 import com.vina.genbe.model.entity.PersonEntity;
 import com.vina.genbe.repository.BiodataRepository;
 import com.vina.genbe.repository.PendidikanRepository;
-//import com.vina.genbe.repository.BiodataRepository;
 import com.vina.genbe.repository.PersonRepository;
 import com.vina.genbe.service.PersonService;
 import com.vina.genbe.service.ServiceImpl;
@@ -53,29 +43,11 @@ public class PersonController {
 		this.pendidikanRepository = pendidikanRepository;
 		this.biodataRepository = biodataRepository;
 	}
-//	@GetMapping("/{idAja}")
-//	  public BiodataDto getBiodata(@PathVariable Integer idAja) {
-//	        Biodata biodata = biodataRepository.findById(idAja).get();
-//	        BiodataDto biodataDto = new BiodataDto();
-//	        // jika tidak pakai model mapper maka perlu setter getter satu satu
-//	        biodataDto.setId(biodata.getId());
-//	        biodataDto.setAlamat(biodata.getAlamat());
-//	        biodataDto.setNama(biodata.getNama());
-//	        biodataDto.setGolonganDarah(biodata.getDetailBiodata().getGolonganDarah());
-//	        biodataDto.setTempatLahir(biodata.getDetailBiodata().getTempatLahir());
-//	        biodataDto.setIdDetail(biodata.getDetailBiodata().getId().toString());
-//
-//	        return biodataDto;
-//	    }
 	
 	@GetMapping("/detail/{iD}")
 	 public PersonBiodataDto getpersonBiodata(@PathVariable Integer iD) {
-//        List<PersonEntity> personList = personRepository.findById(id);
-//        List<PersonBiodataDto> personBiodataDtos = new ArrayList<>();
-//        for (PersonEntity p : personList) {
 			PersonEntity personEntity = personRepository.findById(iD).get();
         	PersonBiodataDto dto = new PersonBiodataDto();
-//        	BiodataEntity biodataEntity = biodataRepository.findById(iD).get();
         	dto.setiD(personEntity.getId());
         	dto.setIdBio(personEntity.getBiodataEntity().getIdBio());
         	dto.setAlamaT(personEntity.getAlamat());
@@ -84,7 +56,6 @@ public class PersonController {
         	dto.setNiK(personEntity.getNik());
         	dto.setTglLahir(personEntity.getBiodataEntity().getTanggalLahir());
         	dto.setTmpLahir(personEntity.getBiodataEntity().getTempatLahir());
-//        	personBiodataDtos.add(dto);
         	
         return dto;
     }
@@ -98,7 +69,7 @@ public class PersonController {
 	        	BiodataEntity biodataEntity = biodataRepository.findByPersonEntityId(p.getId());
 	        	dto.setiD(p.getId());
 	        	dto.setAlamaT(p.getAlamat());
-	        	dto.setHp(p.getAlamat());
+	        	dto.setHp(biodataEntity.getNoHp());
 	        	dto.setNamA(p.getNama());
 	        	dto.setNiK(p.getNik());
 	        	dto.setTglLahir(biodataEntity.getTanggalLahir());
@@ -137,46 +108,30 @@ public class PersonController {
 
 	@PostMapping
 	public StatusMessageDto insert(@RequestBody PersonBiodataDto dto) {
-//		Calendar calendar = Calendar.getInstance();
-//		calendar.setTime(dto.getTglLahir());
-//		Integer umur = Year.now().getValue() - calendar.get(Calendar.YEAR);
-		
-//		detailPendidikanDto.setUmuR(Integer.toString(umur));
-//		String biodataUmur = Integer.toString(umur);
 		StatusMessageDto status = new StatusMessageDto();
 		DetailPendidikanDto detailPendidikanDto = new DetailPendidikanDto();
-		personService.getUmur(detailPendidikanDto, dto);
-//		hitungUmur(dto.getTglLahir());
+		personService.getAge(detailPendidikanDto, dto);
 		if (dto.getNiK().length() == 16 && Integer.parseInt(detailPendidikanDto.getUmuR()) >= 30 ) {
 			personService.insertPerson(dto);
-			status.setStatus("true");
-			status.setMessage("data berhasil masuk");
+			status.setStatus("Success!!");
+			status.setMessage("Data Berhasil Masuk");
 			return status;
 		} else if ( dto.getNiK().length() != 16 && Integer.parseInt(detailPendidikanDto.getUmuR()) >= 30 ) {
-			status.setStatus("false");
-			status.setMessage("data gagal masuk, jumlah digit nik tidak sama dengan 16");
+			status.setStatus("False");
+			status.setMessage("Data Gagal Masuk, Jumlah Digit NIK tidak sama dengan 16");
 			return status;
 		} else if (Integer.parseInt(detailPendidikanDto.getUmuR()) < 30 &&  dto.getNiK().length() == 16) {
-			status.setStatus("false");
-			status.setMessage("data gagal masuk, umur kurang dari 30 tahun");
+			status.setStatus("False");
+			status.setMessage("Data Gagal Masuk, Umur kurang dari 30 Tahun");
 			return status;
 		} else {
-			status.setStatus("false");
-			status.setMessage("data gagal masuk, umur kurang dari 30 tahun dan NIK kurang dari 16 digit");
+			status.setStatus("False");
+			status.setMessage("Data Gagal Masuk, Umur kurang dari 30 Tahun dan NIK kurang dari 16 digit");
 			return status;
 		}
 
 	}
 
-
-//	private String hitungUmur(Date date) {
-//		Calendar calendar = Calendar.getInstance();
-//		calendar.setTime(date);
-//		Integer umur = Year.now().getValue() - calendar.get(Calendar.YEAR);
-//		String biodataUmur = Integer.toString(umur);
-//		return biodataUmur;
-//
-//	}
 
 	private DetailPendidikanDto convertToDto(PersonEntity personEntity) {
 		DetailPendidikanDto detail = new DetailPendidikanDto();
@@ -185,12 +140,8 @@ public class PersonController {
 		detail.setAlamaT(personEntity.getAlamat());
 		detail.setHp(personEntity.getBiodataEntity().getNoHp());
 		detail.setTglLahir(personEntity.getBiodataEntity().getTanggalLahir());
-//		detail.setTglLahir(personEntity.getBiodataEntity().getTanggalLahir());
 		detail.setTmpLahir(personEntity.getBiodataEntity().getTempatLahir());
 		personService.getUmur2(detail);
-//		DetailPendidikanDto detailPendidikanDto = new DetailPendidikanDto();
-//		detail.setUmuR(Integer.toString(umur));
-//		detail.setUmuR(hitungUmur(personEntity.getBiodataEntity().getTanggalLahir()));
 		detail.setPendidikan_terakhir(pendidikanRepository.akhirPendidikan(personEntity.getId()));
 		return detail;
 	}

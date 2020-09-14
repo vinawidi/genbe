@@ -1,7 +1,10 @@
 package com.vina.genbe.service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+// import java.time.ZoneId;
+// import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +95,8 @@ public class ServiceImpl implements PersonService {
 	}
 
 	@Override
-	public DetailPendidikanDto getUmur(DetailPendidikanDto detailPendidikanDto, PersonBiodataDto personBiodataDto) {
-		java.sql.Date date = personBiodataDto.getTglLahir();
+	public DetailPendidikanDto getAge(DetailPendidikanDto detailPendidikanDto, PersonBiodataDto personBiodataDto) {
+		Date date = personBiodataDto.getTglLahir();
 		LocalDate today = LocalDate.now();
 		LocalDate birth = date.toLocalDate();
 		Period umur = Period.between(birth, today); 
@@ -104,7 +107,7 @@ public class ServiceImpl implements PersonService {
 
 	@Override
 	public DetailPendidikanDto getUmur2(DetailPendidikanDto detailPendidikanDto) {
-		java.sql.Date date = detailPendidikanDto.getTglLahir();
+		Date date = detailPendidikanDto.getTglLahir();
 		LocalDate today = LocalDate.now();
 		LocalDate birth = date.toLocalDate();
 		Period umur1 = Period.between(birth, today);

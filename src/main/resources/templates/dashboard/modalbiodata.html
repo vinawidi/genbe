@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<div class="row mb-2" layout:fragment="content-header">
+<div class="row mb-2 " layout:fragment="content-header">
     <div class="col-sm-6">
         <h1 class="m-0 text-dark">Data Detail Biodata</h1>
     </div>
@@ -20,10 +20,10 @@
 
 
     <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">List Biodata</h3>
-                <button class="float-right btn-primary" id="btn-tambah-biodata">Tambah</button>
+        <div class="card bg-default">
+            <div class="card-header bg-gray-dark">
+                <h3 class="card-title text-default">List Biodata</h3>
+                <button class="float-right bg-gray" id="btn-tambah-biodata">Tambah</button>
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive">
@@ -39,9 +39,9 @@
 
     <div class="modal fade" id="modal-biodata">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Form Person Biodata</h4>
+            <div class="modal-content bg-secondary">
+                <div class="modal-header bg-gray-dark">
+                    <h4 class="modal-title text-default">Form Person Biodata</h4>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -75,16 +75,21 @@
                         <div class="form-group">
                             <label>Nomor HP: </label>
                             <input class="form-control" id="hp" name="hp"
-                                   placeholder="Enter Nomor" required type="text">
+                                   placeholder="Enter Nomor" required type="number">
                         </div>
-                        <div class="form-group">
+                         <div class="form-group">
+                            <label>Tanggal Lahir: </label>
+                            <input class="form-control" id="tglLahir" name="tglLahir"
+                                   placeholder="Enter Tanggal Lahir" required type="date">
+                        </div>
+                       <!-- <div class="form-group">
                             <label>Tanggal Lahir:</label>
                             <div class="form-group">
                                 <input type="date" class="form-control date"
                                     id="tglLahir" name="tglLahir" data-inputmask-alias="datetime"
                                     data-inputmask-inputformat="dd/mm/yyyy" data-mask="">
                             </div>
-                        </div> 		
+                        </div> 		 --> 
 						 <div class="form-group">
                             <label>Tempat Lahir: </label>
                             <input class="form-control" id="tmpLahir" name="tmpLahir"
@@ -94,8 +99,8 @@
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-                    <button class="btn btn-primary" id="btn-save-biodata" type="button">Save</button>
+                    <button class="bg-gray-dark" data-dismiss="modal" type="button">Close</button>
+                    <button class="bg-gray-dark" id="btn-save-biodata" type="button">Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->

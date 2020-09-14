@@ -1,5 +1,6 @@
 package com.vina.genbe.model.dto;
 
+
 import java.sql.Date;
 
 public class BiodataDto {

@@ -2,9 +2,13 @@ package com.vina.genbe.model.entity;
 
 
 
+
 import java.sql.Date;
 
 import javax.persistence.*;
+
+// import com.fasterxml.jackson.annotation.JsonFormat;
+// import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @Entity
 @Table(name = "t_biodata")
@@ -19,6 +23,8 @@ public class BiodataEntity {
 	private String noHp;
 
 	@Column(name = "tanggal_lahir", nullable = false)
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	// @Temporal(TemporalType.DATE)
 	private Date tanggalLahir;
 
 	@Column(name = "tempat_lahir", length = 50)

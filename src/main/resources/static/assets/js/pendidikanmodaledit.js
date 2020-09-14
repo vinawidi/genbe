@@ -30,7 +30,7 @@ var tableBiodata = {
                     title: "Action",
                     data: null,
                     render: function (data, type, full, meta) {
-                        return "<button class='btn-primary' onclick=formBiodata.setEditData('" + meta.row + "')>Edit</button>"
+                        return "<button class='bg-secondary' onclick=formBiodata.setEditData('" + meta.row + "')>Edit</button>"
                     }
                 }
             ]
